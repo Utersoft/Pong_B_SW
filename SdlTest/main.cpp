@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "Screen.h"
 #include "Rect.h"
+#include "Ball.h"
 
 
 
@@ -13,14 +14,17 @@ int main(int argc, char** argv)
     Screen pWindow("Pong en SDL", SCREEN_WIDTH, SCREEN_HEIGHT);
     Rect leftPaddleRect(pWindow, PADDLE_WIDTH, PADDLE_HEIGHT, SCREEN_WIDTH * 0.01, SCREEN_HEIGHT / 2,  255, 255, 255, 0, 1);
     Rect rightPaddleRect(pWindow, PADDLE_WIDTH, PADDLE_HEIGHT, SCREEN_WIDTH * 0.978, SCREEN_HEIGHT / 2,  255, 255, 255, 0, 2);
-    Rect ballRect(pWindow, 30, 30, SCREEN_WIDTH / 2, 0, 255, 255, 255, 0, 0);
+    Rect ballRect(pWindow, BALLSIZE, BALLSIZE, SCREEN_WIDTH / 2, 10, 255, 255, 255, 0, 0);
+    Ball pongBall(ballRect, ANGX, ANGY, -1);
 
     while (!pWindow.isClosed()) {
         pollEvents(pWindow, leftPaddleRect, rightPaddleRect);
+        pongBall.pollEvents(0, 0, leftPaddleRect, rightPaddleRect);
         leftPaddleRect.draw();
         rightPaddleRect.draw();
-        ballRect.draw();
+        pongBall.draw();
         pWindow.clearScreen();
+        SDL_Delay(10);
     }
 
 

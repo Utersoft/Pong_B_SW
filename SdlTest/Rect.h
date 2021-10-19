@@ -9,6 +9,11 @@ public:
 	void draw() const;
 	void pollEvents1(SDL_Event& event);
 	void pollEvents2(SDL_Event& event);
+
+	
+
+	int GetX();
+	int GetY();
 	
 	
 	int type;
@@ -18,4 +23,7 @@ private:
 	int x, y;
 	int r, g, b, o;
 	
+protected:
+	void SetX(int x);
+	void SetY(int y);
 };

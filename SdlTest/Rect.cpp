@@ -68,3 +68,23 @@ void Rect::pollEvents2(SDL_Event& event)
 		}
 	}
 }
+
+void Rect::SetX(int x)
+{
+	this->x = x;
+}
+
+void Rect::SetY(int y)
+{
+	this->y = y;
+}
+
+int Rect::GetX()
+{
+	return x;
+}
+
+int Rect::GetY()
+{
+	return y;
+}
