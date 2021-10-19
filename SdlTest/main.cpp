@@ -16,10 +16,14 @@ int main(int argc, char** argv)
     Rect rightPaddleRect(pWindow, PADDLE_WIDTH, PADDLE_HEIGHT, SCREEN_WIDTH * 0.978, SCREEN_HEIGHT / 2,  255, 255, 255, 0, 2);
     Rect ballRect(pWindow, BALLSIZE, BALLSIZE, SCREEN_WIDTH / 2, 10, 255, 255, 255, 0, 0);
     Ball pongBall(ballRect, ANGX, ANGY, -1);
+    pongBall.initBallDirection();
+    int scoreJ1 = 0, scoreJ2 = 0;
 
+    //Boucle principale du jeu.
+    //Contient tous les events du jeu ainsi que l'affichage des éléments du jeu (raquettes, balle, gestions des touches)
     while (!pWindow.isClosed()) {
         pollEvents(pWindow, leftPaddleRect, rightPaddleRect);
-        pongBall.pollEvents(0, 0, leftPaddleRect, rightPaddleRect);
+        pongBall.pollEvents(scoreJ1, scoreJ2, leftPaddleRect, rightPaddleRect);
         leftPaddleRect.draw();
         rightPaddleRect.draw();
         pongBall.draw();

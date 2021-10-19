@@ -11,9 +11,13 @@ public:
 	void pollEvents2(SDL_Event& event);
 
 	
-
+	//Assesseurs
 	int GetX();
 	int GetY();
+
+	//Mutateurs
+	void SetX(int x);
+	void SetY(int y);
 	
 	
 	int type;
@@ -22,8 +26,4 @@ private:
 	int w, h;
 	int x, y;
 	int r, g, b, o;
-	
-protected:
-	void SetX(int x);
-	void SetY(int y);
 };
