@@ -1,7 +1,7 @@
 #include "Rect.h"
 
 //Constructeur de rect
-Rect::Rect(const Screen& window, int w, int h, int x, int y, int r, int g, int b, int o, int type) :
+Rect::Rect(const Screen& window, int w, int h, int x, int y, int r, int g, int b, int o) :
 	Screen(window)
 {
 	this->w = w;
@@ -12,7 +12,6 @@ Rect::Rect(const Screen& window, int w, int h, int x, int y, int r, int g, int b
 	this->g = g;
 	this->b = b;
 	this->o = o;
-	this->type = type;
 }
 
 //Remplissage du rect

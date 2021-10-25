@@ -4,7 +4,7 @@
 class Rect : public Screen {
 public:
 	//Constructeur
-	Rect(const Screen &window, int w, int h, int x, int y, int r, int g, int b, int o, int type);
+	Rect(const Screen &window, int w, int h, int x, int y, int r, int g, int b, int o);
 
 	void draw() const;
 	void pollEvents1(SDL_Event& event);
@@ -18,9 +18,6 @@ public:
 	//Mutateurs
 	void SetX(int x);
 	void SetY(int y);
-	
-	
-	int type;
 
 private:
 	int w, h;
