@@ -22,7 +22,7 @@ void Ball::pollEvents(int &scoreJ1, int &scoreJ2, Rect &rect1, Rect &rect2)
 {
 	if(scoreJ1 < 3 && scoreJ2 < 3) {
 		//Vérification s'il y a collision avec le plafond ou le bas de l'écran
-		if (this->GetY() < 0 || this->GetY() > SCREEN_HEIGHT - BALLSIZE) {
+		/*if (this->GetY() < 0 || this->GetY() > SCREEN_HEIGHT - BALLSIZE) {
 			flt_spdY = flt_spdY * (-1);
 		}
 		//Vérification du contact avec la raquette de gauche, on le fait partir dans l'autre sens et aller plus viter
@@ -64,7 +64,7 @@ void Ball::pollEvents(int &scoreJ1, int &scoreJ2, Rect &rect1, Rect &rect2)
 		//Reset du score après un laps de 5 sec
 		SDL_Delay(5000);
 		scoreJ1 = 0;
-		scoreJ2 = 0;
+		scoreJ2 = 0;*/
 	}
 }
 

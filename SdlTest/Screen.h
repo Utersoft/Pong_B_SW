@@ -4,8 +4,16 @@
 #include <SDL.h>
 #define SCREEN_WIDTH 1500
 #define SCREEN_HEIGHT 750
-#define PADDLE_HEIGHT 100
-#define PADDLE_WIDTH 20
+#define PADDLE_HEIGHT 20
+#define PADDLE_WIDTH 100
+#define PADDLE_SPEED 6
+
+enum class Control {
+	DEFAULT,
+	KEY_LEFT,
+	KEY_RIGHT,
+	KEY_SHOOT
+};
 
 using namespace std;
 

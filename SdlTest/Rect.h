@@ -7,8 +7,8 @@ public:
 	Rect(const Screen &window, int w, int h, int x, int y, int r, int g, int b, int o);
 
 	void draw() const;
-	void pollEvents1(SDL_Event& event);
-	void pollEvents2(SDL_Event& event);
+	void pollEvents(SDL_Event& event, Control &playerInput);
+	
 
 	
 	//Assesseurs

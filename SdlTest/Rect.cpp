@@ -29,42 +29,41 @@ void Rect::draw() const
 }
 
 //Event du joueur 1 (gauche)
-void Rect::pollEvents1(SDL_Event &event)
+void Rect::pollEvents(SDL_Event &event, Control &playerInput)
 {
 	const Uint8* keystate = SDL_GetKeyboardState(NULL);
-	if (event.type == SDL_KEYDOWN) {
+	if (event.type == SDL_KEYDOWN && event.key.repeat == 0) {
 		//On vérifie si la touche Z (c'est en qwerty) est en état pressée ou non et si oui, on monte la paddle
-		if (keystate[SDL_SCANCODE_W]) {
-			if (y >= 0) {
-				y -= 20;
+		if (keystate[SDL_SCANCODE_A]) {
+			if (x >= 0) {
+				playerInput = Control::KEY_LEFT;
 			}
 		}
 		//On vérifie si la touche S est en état pressée ou non et si oui, on descend la paddle
-		if (keystate[SDL_SCANCODE_S]) {
-			if (y <= SCREEN_HEIGHT - PADDLE_HEIGHT) {
-				y += 20;
+		if (keystate[SDL_SCANCODE_D]) {
+			if (x <= SCREEN_WIDTH - PADDLE_WIDTH) {
+				playerInput = Control::KEY_RIGHT;
 			}
+		}
+		if (keystate[SDL_SCANCODE_SPACE]) {
+			playerInput = Control::KEY_SHOOT;
 		}
 	}
-}
+	if (event.type == SDL_KEYUP || (x <= 0 && playerInput == Control::KEY_LEFT) || (x >= SCREEN_WIDTH - PADDLE_WIDTH && playerInput == Control::KEY_RIGHT)) {
+		playerInput = Control::DEFAULT;
+	}
 
-//Event du joueur 2 (droite)
-void Rect::pollEvents2(SDL_Event& event)
-{
-	const Uint8* keystate = SDL_GetKeyboardState(NULL);
-	if (event.type == SDL_KEYDOWN) {
-		//On vérifie si la fléche haut est en état pressée ou non et si oui, on monte la paddle
-		if (keystate[SDL_SCANCODE_UP]) {
-			if (y >= 0) {
-				y -= 20;
-			}
-		}
-		//On vérifie si la fléche bas est en état pressée ou non et si oui, on descend la paddle
-		if (keystate[SDL_SCANCODE_DOWN]) {
-			if (y <= SCREEN_HEIGHT - PADDLE_HEIGHT) {
-				y += 20;
-			}
-		}
+	switch (playerInput){
+	case Control::KEY_LEFT:
+		x -= PADDLE_SPEED;
+		break;
+	case Control::KEY_RIGHT:
+		x += PADDLE_SPEED;
+		break;
+	case Control::KEY_SHOOT:
+		break;
+	case Control::DEFAULT:
+		break;
 	}
 }
 
