@@ -10,6 +10,13 @@ Screen::Screen(const string& title, int screenWidth, int screenHeight) {
 	closed = !initScreen();
 }
 
+/*Screen::Screen()
+{
+	title = "";
+	screenWidth = 0;
+	screenHeight = 0;
+}*/
+
 
 //Destructeur d'écran
 Screen::~Screen()
