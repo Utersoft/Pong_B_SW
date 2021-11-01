@@ -1,5 +1,6 @@
 #pragma once
 #include "Brick.h"
+#include <time.h>
 
 
 typedef struct brickElement {
@@ -9,17 +10,16 @@ typedef struct brickElement {
 }brickElement;
 
 
-class listBrick : public Screen{
+class listBrick {
 private:
 	brickElement* pCurrentBrick;
 	brickElement* pFirstBrick;
-
 public:
-	listBrick(const Screen& screen);
+	listBrick();
 	~listBrick();
 	void firstBrick();
-	void initListBrick(Screen& pWindow);
+	Brick initBrick(int n_i, int n_j);
+	void initListBrick(Brick brick[BRICK_NUMBER_LENGTH * BRICK_NUMBER_WIDTH]);
 	void addBrick(Brick *brick, int ID);
-	void drawList();
-
+	void drawList(SDL_Renderer *renderer);
 };

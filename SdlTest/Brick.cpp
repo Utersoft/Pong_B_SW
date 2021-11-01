@@ -1,20 +1,19 @@
 #include "Brick.h"
 
-/*Brick::Brick()
+Brick::Brick()
 {
-	life = 0;
-	w = 0;
-	h = 0;
-	x = 0;
-	y = 0;
-	r = 0;
-	g = 0;
-	b = 0;
-	a = 0;
-}*/
+	life = 1;
+	w = BRICK_WIDTH;
+	h = BRICK_HEIGHT;
+	x = BRICK_ORIGIN_X;
+	y = BRICK_ORIGIN_Y;
+	r = 255;
+	g = 255;
+	b = 255;
+	a = 1;
+}
 
-Brick::Brick(const Screen& screen, int life, int w, int h, int x, int y, int r, int g, int b, int a) :
-	Screen (screen)
+Brick::Brick(int life, int w, int h, int x, int y, int r, int g, int b, int a)
 {
 	this->life = life;
 	this->w = w;
@@ -27,14 +26,14 @@ Brick::Brick(const Screen& screen, int life, int w, int h, int x, int y, int r, 
 	this->a = a;
 }
 
-void Brick::draw() const
+void Brick::draw(SDL_Renderer *renderer) const
 {
 	SDL_Rect brick;
 
-	brick.w = w;
-	brick.h = h;
-	brick.x = x;
-	brick.y = y;
+	brick.w = this->w;
+	brick.h = this->h;
+	brick.x = this->x;
+	brick.y = this->y;
 
 	switch (life) {
 	case 1:
@@ -49,5 +48,40 @@ void Brick::draw() const
 	}
 	SDL_RenderFillRect(renderer, &brick);
 }
+
+
+
+Brick Brick::operator=(const Brick& brick)
+{
+	this->x = brick.x;
+	this->y = brick.y;
+	this->w = brick.w;
+	this->h = brick.h;
+	this->r = brick.r;
+	this->g = brick.g;
+	this->b = brick.b;
+	this->a = brick.a;
+	this->life = brick.life;
+
+	return *this;
+}
+
+
+
+void Brick::SetX(int x)
+{
+	this->x = x;
+}
+
+void Brick::SetY(int y)
+{
+	this->y = y;
+}
+
+void Brick::SetLife(int life)
+{
+	this->life = life;
+}
+
 
 

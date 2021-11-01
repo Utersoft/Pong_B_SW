@@ -1,15 +1,24 @@
 #pragma once
 #include "screen.h"
 
-class Brick : public Screen {
+class Brick {
 public:
-	Brick(const Screen& screen, int life, int w, int h, int x, int y, int r, int g, int b, int a);
-	//Brick();
+	Brick(int life, int w, int h, int x, int y, int r, int g, int b, int a);
+	Brick();
 	
 
 	inline bool isDestroyed() const { return destroyed; }
 
-	void draw() const;
+	void SetX(int x);
+	void SetY(int y);
+	void SetLife(int life);
+	int GetX() { return x; };
+	int GetY() { return y; };
+	int GetW() { return w; };
+	int GetH() { return h; };
+	void draw(SDL_Renderer *renderer) const;
+
+	Brick operator=(const Brick &brick);
 
 private:
 	int life;
@@ -20,4 +29,5 @@ private:
 	int r, g, b, a;
 	
 	bool haveBonus = false;
+protected:
 };

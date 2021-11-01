@@ -8,11 +8,12 @@
 #define PADDLE_WIDTH 100
 #define PADDLE_SPEED 6
 #define BRICK_NUMBER_LENGTH 6
-#define BRICK_NUMBER_WIDTH 5
-#define BRICK_WIDTH 70
+#define BRICK_NUMBER_WIDTH 12
+#define BRICK_WIDTH 100
 #define BRICK_HEIGHT 40
 #define BRICK_ORIGIN_X 100
-#define BRICK_ORIGIN_Y 50
+#define BRICK_ORIGIN_Y 60
+#define BRICK_SPACING 8
 
 enum class Control {
 	DEFAULT,
@@ -27,7 +28,7 @@ using namespace std;
 class Screen {
 public:
 	//Constructeurs
-	//Screen();
+	Screen();
 	Screen(const string& title, int screenWidth, int screenHeight);
 	//Destructeur
 	~Screen();
@@ -39,6 +40,8 @@ public:
 
 	inline bool isClosed() const { return closed;  }
 
+	SDL_Renderer* renderer = NULL;
+
 private:
 	bool initScreen();
 
@@ -48,8 +51,9 @@ private:
 
 	bool closed = false;
 
+	
 
 protected:
 	SDL_Window* window = NULL;
-	SDL_Renderer* renderer = NULL;
+	
 };

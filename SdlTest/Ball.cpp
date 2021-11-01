@@ -1,32 +1,28 @@
 #include "Ball.h"
 
-Ball::Ball(const Rect& rect, float flt_spdX, float flt_spdY, int n_start) :
+Ball::Ball(const Rect& rect, float flt_spdX, float flt_spdY, SDL_Rect ballColliderBox) :
 	Rect(rect)
 {
 	this->flt_spdX = flt_spdX;
 	this->flt_spdY = flt_spdY;
-	this->n_start = n_start;
+	this->ballCollideBox.w = ballColliderBox.w;
+	this->ballCollideBox.h = ballColliderBox.h;
 }
 
 Ball::~Ball()
 {
 }
 
-//Initialisation de la direction de la balle au début de la game
-void Ball::initBallDirection()
-{
-	this->flt_spdX = this->flt_spdX * n_start;
-}
 
-void Ball::pollEvents(int &scoreJ1, int &scoreJ2, Rect &rect1, Rect &rect2)
+void Ball::pollEvents(Rect &paddle, listBrick listOfBrick)
 {
-	if(scoreJ1 < 3 && scoreJ2 < 3) {
+	if(0) {
 		//Vérification s'il y a collision avec le plafond ou le bas de l'écran
-		/*if (this->GetY() < 0 || this->GetY() > SCREEN_HEIGHT - BALLSIZE) {
+		if (this->GetY() < 0) {
 			flt_spdY = flt_spdY * (-1);
 		}
 		//Vérification du contact avec la raquette de gauche, on le fait partir dans l'autre sens et aller plus viter
-		if  (this->ballColide(rect1)){
+		/*if (this->ballColide(rect1)) {
 			flt_spdX = flt_spdX * (-1);
 			flt_spdX+=0.2;
 			flt_spdY+=0.2;
@@ -70,7 +66,36 @@ void Ball::pollEvents(int &scoreJ1, int &scoreJ2, Rect &rect1, Rect &rect2)
 
 
 //Fonction de détection de la collision de la balle avec les raquettes (paddle)
-bool Ball::ballColide(Rect& rect)
+bool Ball::ballCollide(SDL_Rect collisionBox, Brick brick)
 {
-	return (((this->GetX() <= rect.GetX() + PADDLE_WIDTH && this->GetX() >= rect.GetX()) || (this->GetX() + BALLSIZE >= rect.GetX() && this->GetX() + BALLSIZE <= rect.GetX() + PADDLE_WIDTH)) && (this->GetY() >= rect.GetY() && this->GetY() <= rect.GetY() + PADDLE_HEIGHT) && (this->GetY() + BALLSIZE >= rect.GetY() && this->GetY() + BALLSIZE <= rect.GetY() + PADDLE_HEIGHT));
+	int leftA, leftB;
+	int rightA, rightB;
+	int topA, topB;
+	int bottomA, bottomB;
+
+	leftA = collisionBox.x;
+	rightA = collisionBox.x + collisionBox.w;
+	topA = collisionBox.y;
+	bottomA = collisionBox.y + collisionBox.h;
+
+	leftB = brick.GetX();
+	rightB = brick.GetX() + brick.GetW();
+	topB = brick.GetY();
+	bottomB = brick.GetY() + brick.GetH();
+
+
+	if (bottomA <= topB) {
+		return false;
+	}
+	if (topA >= bottomB) {
+		return false;
+	}
+	if (rightA <= leftB) {
+		return false;
+	}
+	if (leftA >= rightB) {
+		return false;
+	}
+
+	return true;
 }

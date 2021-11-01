@@ -10,12 +10,14 @@ Screen::Screen(const string& title, int screenWidth, int screenHeight) {
 	closed = !initScreen();
 }
 
-/*Screen::Screen()
+Screen::Screen()
 {
-	title = "";
-	screenWidth = 0;
-	screenHeight = 0;
-}*/
+	title = "Casse Brique en SDL";
+	screenWidth = SCREEN_WIDTH;
+	screenHeight = SCREEN_HEIGHT;
+
+	closed = !initScreen();
+}
 
 
 //Destructeur d'écran

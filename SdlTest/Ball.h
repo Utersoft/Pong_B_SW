@@ -1,5 +1,6 @@
 #pragma once
 #include "Rect.h"
+#include "ListeBrick.h"
 #define BALLSIZE 30
 #define ANGX -4
 #define ANGY 2
@@ -8,16 +9,16 @@
 class Ball : public Rect{
 public:
 	//Constructeur de Ball
-	Ball(const Rect& rect, float flt_spdX, float flt_spdY, int n_start);
+	Ball(const Rect& rect, float flt_spdX, float flt_spdY, SDL_Rect ballColliderBox);
 	//Destructeurs de Ball
 	~Ball();
 
-	void initBallDirection();
-	void pollEvents(int &scoreJ1, int &scoreJ2, Rect &rect1, Rect &rect2);
-	bool ballColide(Rect& rect);
+	void pollEvents(Rect& paddle, listBrick listOfBrick);
+	bool ballCollide(SDL_Rect collisionBox, Brick brick);
 	
 private:
+
 	float flt_spdX;
 	float flt_spdY;
-	int n_start;
+	SDL_Rect ballCollideBox;
 };
