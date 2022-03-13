@@ -14,7 +14,7 @@ Ball::~Ball()
 }
 
 
-void Ball::pollEvents(Rect &paddle, listBrick listOfBrick)
+void Ball::pollEvents(Rect &paddle, listBrick listOfBrick, Control playerInput)
 {
 	if(0) {
 		//Vérification s'il y a collision avec le plafond ou le bas de l'écran

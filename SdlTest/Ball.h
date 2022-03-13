@@ -13,7 +13,7 @@ public:
 	//Destructeurs de Ball
 	~Ball();
 
-	void pollEvents(Rect& paddle, listBrick listOfBrick);
+	void pollEvents(Rect& paddle, listBrick listOfBrick, Control playerInput);
 	bool ballCollide(SDL_Rect collisionBox, Brick brick);
 	
 private:
